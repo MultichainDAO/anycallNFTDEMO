@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+  
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<meta name="description" content="Neoh">
+<meta name="author" content="Frenify">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<title>Omni NFT</title>
+<link rel="shortcut icon" type="image/png" href="img/favicon.ico">
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@100;200;300;400;500;600;700;800;900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<!-- !Google Fonts -->
+
+<!-- Styles -->
+<link type="text/css" rel="stylesheet" href="css/plugins.css" />
+<link type="text/css" rel="stylesheet" href="css/style.css?ver=2.0" />
+<style>
+	[v-cloak] {display:none}
+	.hashTable {
+		table-layout: fixed;
+	}
+	.hashTable td {
+		padding: 2px;
+		text-align: center;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis
+	}
+	.hashTable td a {
+		color: #999999;
+	}
+</style>
+<!--[if lt IE 9]> <script type="text/javascript" src="js/modernizr.custom.js"></script> <![endif]-->
+<!-- !Styles -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.2.44/vue.global.min.js"></script>
+</head>
+
+<body id="app" v-cloak>
+
+
+<!-- Main -->
+<div class="neoh_fn_main" data-footer-sticky="">
+	
+	<!-- Header -->
+	<header class="neoh_fn_header">
+		<div class="container">
+			<div class="header_in">
+			
+				<div class="logo">
+					<a href="index.html">Omni NFT</a>
+				</div>
+				
+				<div class="nav">
+					<a href="#mint">MINT</a>
+					<a href="#transfer">TRANSFER</a>
+					<a href="#guide">GUIDE</a>
+					<a href="#about">ABOUT</a>
+				</div>
+				<div class="rtBtn">
+					<a v-if="!curWallet.address" href="javascript:void(0);" class="neoh_fn_button" :class="{active:!curWallet.address}" style="padding:0 12px 0 64px;" @click="connectWallet">
+						<span class="icon"><img src="img/metamask.png" alt="" class="fn__svg"></span>
+						<span class="text" style="font-size: 12px;">{{walletTip}}</span>
+					</a>
+					<a v-else-if="!curWallet.chainInfo" href="javascript:void(0);" style="padding-left: 25px;color:red;" class="neoh_fn_button" :class="{active:curWallet.address&&!curWallet.chainInfo}">
+						Wrong Network
+					</a>
+					<a v-else href="javascript:void(0);" class="neoh_fn_button" :class="{active:curWallet.address}" style="display:flex;text-transform:none;padding:0 20px 0 0;text-align:right;" @click="lookAddr">
+						<span class="icon" style="position:relative;margin:0;"><span style="width:auto;line-height: 22px;font-size: 12px;">{{curWallet.coin + " " + curWallet.chainInfo.symbol}}</span></span>
+						<span class="text" style="width: 154px;">{{curWallet.address.slice(0,6)+'...'+curWallet.address.slice(-4)}}</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!-- !Header -->
+	
+
+	<!-- Content -->
+	<div class="neoh_fn_content">
+
+		<!-- Hero Header -->
+		<div class="neoh_fn_hero">
+			
+			<!-- Overlay (of hero header) -->
+			<div class="bg_overlay">
+				
+				<!-- Overlay Color -->
+				<!-- <div class="bg_color"></div> -->
+				<!-- !Overlay Color -->
+				
+				<!-- Overlay Image -->
+				<div class="bg_image" data-bg-img="img/bg.png"></div>
+				<!-- !Overlay Image -->
+				
+			</div>
+			<!-- Overlay (of hero header) -->
+			
+			<div class="hero_content">
+				<div class="container">
+					<div class="content">
+						<img src="img/bg1.png" class="mainImg">
+						<!-- <h2 class="fn_title" title="Omni NFT">Omni NFT</h2> -->
+						<h2 class="fn_title fn_animated_text">OMNI NFT</h2>
+						<p class="fn_desc fn_animated_text">You can launch your own NFT by the Omnichain Omni NFT project, launch your NFT, meet your need!</p>
+					</div>
+				</div>
+				<a href="#mint" class="neoh_fn_down magic-hover magic-hover__square">
+					<span class="text">Scroll Down</span>
+					<span class="icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 492.004 492.004" style="enable-background:new 0 0 492.004 492.004;" xml:space="preserve" class="fn__svg replaced-svg"><path d="M382.678,226.804L163.73,7.86C158.666,2.792,151.906,0,144.698,0s-13.968,2.792-19.032,7.86l-16.124,16.12    c-10.492,10.504-10.492,27.576,0,38.064L293.398,245.9l-184.06,184.06c-5.064,5.068-7.86,11.824-7.86,19.028    c0,7.212,2.796,13.968,7.86,19.04l16.124,16.116c5.068,5.068,11.824,7.86,19.032,7.86s13.968-2.792,19.032-7.86L382.678,265    c5.076-5.084,7.864-11.872,7.848-19.088C390.542,238.668,387.754,231.884,382.678,226.804z"></path></svg></span>
+				</a>
+			</div>
+			
+				
+			
+		</div>
+		<!-- !Hero Header -->
+		
+		
+		<!-- About Section -->
+		<section id="mint">
+			<div class="container">
+				
+				<!-- About Item #1 -->
+				<div class="neoh_fn_about_item" style="margin">
+					<div class="img_item">
+						<div class="swiper-container mySwiper1">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide" v-for="img of mintImg">
+									<img :src="img" alt="">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="content_item">
+						
+						<div class="neoh_fn_title" data-align="left">
+							<h3 class="fn_title">Omni NFT MINT</h3>
+							<div class="line"><span></span></div>
+						</div>
+						
+						<div class="desc">
+							<p>Omni NFT is an Omnichain NFT project with super capabilities based on anyCall. You can perform Omnichain Mint and cross-chain Transfer operations here. Each transaction is safe, convenient and fast. Expecially the transtraction on the different chain, you can experience unparalleled liquidity for each transaction.</p>
+							<p>1 mints per transaction</p>0
+						</div>
+						
+						<div class="mint_mintDataGrid">
+							<div class="mint_mintDataWrap">
+								<h5>MINTED</h5><span>{{minted}}</span>
+							</div>
+							<span class="mint_line"></span>
+							<div class="mint_mintDataWrap">
+								<h5>PRICE</h5><span>{{curWallet.mint_price}}<img :src="'img/'+(curWallet.chainInfo ? curWallet.chainInfo.logo : 'price.png')" class="unit"></span>
+							</div>
+							<span class="mint_line"></span>
+							<div class="mint_mintDataWrap">
+								<h5>QUANTITY</h5><span>1</span>
+							</div>
+						</div>
+
+						<div class="Selectchain_nftselectWrap">
+							<label>Select chain to mint on</label>
+
+							<div class="buttons">
+								<select class="neoh_fn_button" :value="curWallet.chainId" @change="swithNetwork">
+									<option v-for="item of chainList" :value="item.chainId" :key="item.chainId">{{item.name}}</option>
+								</select>
+								<a href="javascript:void(0);" class="neoh_fn_button lightBtn" @click="handleMint"><span class="text">MINT NOW</span></a>
+
+								<div>
+									<span class="item"><a href="javascript:void(0);" class="textButton" @click="openWhiteList">WHITE LIST</a></span>
+									<span class="item" style="margin-left: 120px;"><a href="javascript:void(0);" class="textButton" @click="openFaucets">FAUCETS</a></span>
+								</div>
+
+								<div style="margin-top:20px;width:350px;">
+									<table class="hashTable">
+										<tr v-for="item of mintHashList">
+											<td @click="lookHash(item)"><a href="javascript:void(0);" :title="item.hash">{{item.hash}}</a></td>
+											<td width="80">{{item.status}}</td>
+										</tr>
+									</table>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				<!-- !About Item #1 -->
+
+				<!-- About Item #2 -->
+				<div class="neoh_fn_about_item" id="transfer">
+					<!-- 橱窗 -->
+					<div class="img_item img_item_nobg">
+						<div class="swiper-container mySwiper2">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide" v-for="itm of tokenList" :key="itm.name">
+									<img :src="itm.image" alt="">
+									<div class="productDesc">{{itm.name}}</div>
+								</div>
+							</div>
+						    <div class="swiper-button-prev"></div>
+						    <div class="swiper-button-next"></div>
+						</div>
+					</div>
+					<div class="content_item">
+						
+						<div class="neoh_fn_title" data-align="left">
+							<h3 class="fn_title">Transfer NFT</h3>
+							<div class="line"><span></span></div>
+						</div>
+						
+						<div class="desc">
+							<p>Destination Network</p>
+						</div>
+						
+						<div class="buttons">
+							<select class="neoh_fn_button" v-model="toChainId">
+								<option v-for="item of toChainInfo" :value="item.chainId" :key="'to'+item.chainId">{{item.name}}</option>
+							</select>
+							<a href="javascript:void(0);" class="neoh_fn_button lightBtn" @click="handlerTransfer" style="padding-left: 20px;margin: 20px auto;width: 100%"><span class="text">TRANSFER</span>
+							</a>
+						</div>
+						
+						<div class="desc">
+							<p>Your item will show up in your wallet on {{Ethereum}}. Unused gas will be refunded to your wallet.</p>
+						</div>
+
+						<div>
+							<table class="hashTable">
+								<tr v-for="item of transferHashList">
+									<td @click="lookHash(item)"><a href="javascript:void(0);" :title="item.hash">{{item.hash}}</a></td>
+									<td width="80">{{item.status}}</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+				<!-- !About Item #2 -->
+				
+				
+			</div>
+		</section>
+		<!-- !About Section -->
+		
+		<!-- Services Section -->
+		<section id="guide">
+			
+			<!-- Dividers -->
+			<!-- <img src="svg/divider.svg" alt="" class="fn__svg fn__divider top_divider">
+			<img src="svg/divider.svg" alt="" class="fn__svg fn__divider bottom_divider"> -->
+			<!-- !Dividers -->
+			
+			
+			<div class="container">
+				
+				<!-- Main Title -->
+				<div class="neoh_fn_title">
+					<h3 class="fn_title">GUIDE</h3>
+					<div class="line"><span></span></div>
+				</div>
+				<!-- !Main Title -->
+				
+				<!-- Services -->
+				<div class="neoh_fn_services">
+					<ul>
+						<li>
+							<div class="item">
+								<div class="item_num"><span>01</span></div>
+								<div class="item_content">
+									<h3 class="fn_title">How to get test token</h3>
+									<p class="fn_desc fn_animated_text">Click Mint button, and select the faucet link to enter the page, then follow the guide, you can get  test token.</p>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="item">
+								<div class="item_num"><span>02</span></div>
+								<div class="item_content">
+									<h3 class="fn_title">How to join the white list</h3>
+									<p class="fn_desc fn_animated_text">Two methods are supported: preferential list and airdrop list. you succeed in joining the white list after you fill in your wallet address, select the target chain and join method. Note: Each wallet address can be mint once.</p>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="item">
+								<div class="item_num"><span>03</span></div>
+								<div class="item_content">
+									<h3 class="fn_title">How to Mint Omni NFT</h3>
+									<p class="fn_desc fn_animated_text">Select the target chain that needs Mint and click the Mint button ,then follow the guide , you can get Omni NFT.</p>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="item">
+								<div class="item_num"><span>04</span></div>
+								<div class="item_content">
+									<h3 class="fn_title">How to perform NFT transfer</h3>
+									<p class="fn_desc fn_animated_text">Select the NFT and target chain to be operated, and click the "transfer" button to perform cross-chain transaction. After the successful transaction , you can switch the wallet to the target chain to check the NFT.</p>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<!-- !Services -->
+				
+			</div>
+		</section>
+		<!-- !Services Section -->
+	
+	</div>
+	<!-- Content -->
+	
+	<!-- Footer -->
+	<footer id="footer">
+		<div class="neoh_fn_footer">
+		
+			<!-- Footer Top -->
+			<div class="footer_top">
+				<div class="container" id="about">
+					<div class="ft_in">
+					
+						<div class="desc">
+							<div class="img">
+								<!-- <img src="img/logo.png" alt=""> -->
+							</div>
+							<h3 class="fn_title">FUTURE</h3>
+							<p class="fn_desc">anyCall is a generic cross-chain messaging protocol, which can send cross-chain messages and call contracts from chain A to chain B. It enables the easy calling of contracts native to one blockchain from any other blockchain. The call is secured by Multichain nodes, which are already used to secure billions of assets.</p>
+							<p class="fn_desc">With just one transaction, anyCall can send arbitrary data, like smart contracts, NFTs, messages, tokens, data, etc to any other blockchain.</p>
+						</div>
+						
+						<div class="neoh_fn_social_list">
+							<ul>
+								<li><a href="https://multidao.gitbook.io/anycall/"><img src="img/gitbook.png"></a></li>
+								<li><a href="https://discord.gg/sxqcWn7std"><img src="img/discord.png"></a></li>
+								<li><a href="https://t.me/Anyswapdev"><img src="img/tg.svg"></a></li>
+								<li><a href="https://twitter.com/multichaindao"><i class="fn-icon-twitter"></i></a></li>
+								<li><a href="#" title="home">H</a></li>
+							</ul>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			<!-- !Footer Top -->
+			
+			<!-- Footer Bottom -->
+			<div class="footer_bottom">
+				<div class="container">
+					<!-- <div class="fb_in"> -->
+						
+						<div class="fb_left">
+							<p style="text-align: center;">Copyright 2022 &copy; Designed & Developed by  <a href="#" target="_blank">Omni NFT</a></p>
+						</div>
+						
+						<!-- <div class="fb_right">
+							<ul>
+								<li><a href="#">Terms &amp; Conditions</a></li>
+							</ul>
+						</div> -->
+						
+					<!-- </div> -->
+				</div>
+			</div>
+			<!-- !Footer Bottom -->
+			
+		</div>
+	</footer>
+	<!-- !Footer -->
+	
+	<!-- Totop -->
+	<a href="#" class="neoh_fn_totop">
+		<span class="arrow"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 492.004 492.004" style="enable-background:new 0 0 492.004 492.004;" xml:space="preserve" class="fn__svg replaced-svg">
+		<path d="M382.678,226.804L163.73,7.86C158.666,2.792,151.906,0,144.698,0s-13.968,2.792-19.032,7.86l-16.124,16.12    c-10.492,10.504-10.492,27.576,0,38.064L293.398,245.9l-184.06,184.06c-5.064,5.068-7.86,11.824-7.86,19.028    c0,7.212,2.796,13.968,7.86,19.04l16.124,16.116c5.068,5.068,11.824,7.86,19.032,7.86s13.968-2.792,19.032-7.86L382.678,265    c5.076-5.084,7.864-11.872,7.848-19.088C390.542,238.668,387.754,231.884,382.678,226.804z"></path></svg></span>
+		<span class="circle"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="play" x="0px" y="0px" height="100px" width="100px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve" class="fn__svg replaced-svg"><path class="stroke-solid" fill="none" d="M49.9,2.5C23.6,2.8,2.1,24.4,2.5,50.4C2.9,76.5,24.7,98,50.3,97.5c26.4-0.6,47.4-21.8,47.2-47.7     C97.3,23.7,75.7,2.3,49.9,2.5" style="stroke-dashoffset: 156px;"></path></svg></span>
+	</a>
+	<!-- !Totop -->
+	 
+	
+</div>
+<!-- !Main -->
+
+<!-- Scripts -->
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/plugins.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/web3@1.8.0/dist/web3.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/merkletreejs@latest/merkletree.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/keccak256@latest/keccak256.min.js"></script>
+<!--[if lt IE 10]> <script type="text/javascript" src="js/ie8.js"></script> <![endif]-->
+<script type="text/javascript" src="js/init.js?ver=2.0"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<!-- !Scripts -->
+
+</body>
+</html>
