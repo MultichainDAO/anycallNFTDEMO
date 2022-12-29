@@ -5582,6 +5582,7 @@ select.neoh_fn_button option{
 	font-weight: bold;
 	color: #fff;
 	margin-top: 400px;
+	padding-bottom: 10px;
 }
 .neoh_fn_hero .mainImg{
 	position: absolute;
@@ -5617,6 +5618,12 @@ select.neoh_fn_button option{
 	}
 	.neoh_fn_about_item .productDesc{
 		padding: 10px;
+	}
+	.mobileHide{
+		display: none !important;
+	}
+	.logo a{
+		font-size: 22px;
 	}
 } 
 table th{
